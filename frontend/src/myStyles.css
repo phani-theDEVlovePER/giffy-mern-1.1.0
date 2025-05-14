@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,400;1,500;1,600;1,700&family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.listItem{
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    letter-spacing: 0.3px;
+    height: 100%;
+    padding: 20px 7px;
+}
+.listItem:hover, .active{
+    color: #ee5221;
+}
+
+.listItem::before{
+    content: "";
+    position: absolute;
+    height: 3px;
+    width: 0;
+    left: 0;
+    top: 0;
+    background-color: #ee5221;
+    transition: 0.3s;
+}
+.listItem:hover::before, .active::before{
+    width: 100%;
+}
+
+.pagebg{
+    background-image: url(../assets/bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: scroll;
+    -webkit-transition: background 0s;
+    -moz-transition: background 0s;
+    -o-transition: background 0s;
+    transition: background 0s;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    scroll-behavior: smooth;
+}
+/* background image for form */
+.formbg{
+    background-image: url(../src/assets/formBG.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: scroll;
+    -webkit-transition: background 0s;
+    -moz-transition: background 0s;
+    -o-transition: background 0s;
+    transition: background 0s;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    scroll-behavior: smooth;
+}
+
+.myButton2{
+    background-color: #1E3A8A;
+    box-shadow: 5px 5px 0 #172554;
+}
+.myButton2:active{
+    box-shadow: none;
+    transform: translate(5px, 5px);
+}
+
+.mystyles-img{
+    transition: width 2s;
+}
+
+.mystyles-img:hover{
+    width: 50rem;
+}
+ 
+
+/* for fields */
+
+.inputBox input:valid ~ span,
+.inputBox input:focus ~ span{
+    color: rgb(85, 143, 235);
+    transform: translate(10px, -7px);
+    font-size: 0.6em;
+    padding: 0 10px;
+    background: white;
+    border-left: 1px solid goldenrod;
+    border-right: 1px solid goldenrod;
+}
+.inputBox input:valid,
+.inputBox input:focus{
+    border: 1px solid greenyellow;
+}
+
+/* output */
+.bgmain{
+    background-image: url(./assets/outputbg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+.glassbg{
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+}
+
+.giftOutputBG{
+    background-image: url(./assets/oldPaper.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
