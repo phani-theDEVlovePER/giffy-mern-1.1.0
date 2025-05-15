@@ -22,7 +22,7 @@ app.use(cookieParser()) // parses cookies in incoming requests
 app.use("/api", appRouter)
 
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "/Frontend/dist")))
+    app.use(express.static(path.join(__dirname, "/frontend/dist")))
 
     // Fallback route for React client-side routing
     app.get("*", (req, res) => {
