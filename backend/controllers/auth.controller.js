@@ -12,9 +12,7 @@ import {
 } from '../SMTPs/sendMail.js';
 
 export const signup = async (req, res) => {
-    // res.send("signup")
     const { email, password, name } = req.body
-    // console.log("from signup controllr", req.body)
 
     try {
         if (!email, !password, !name) {
@@ -28,7 +26,6 @@ export const signup = async (req, res) => {
         // to hash the password
         const hashedPassword = await bcryptjs.hash(password, 10)
         const verificationToken = Math.floor(100000 + Math.random() * 900000).toString()
-        console.log("from authController: ", verificationToken)
         const user = new User({
             email,
             password: hashedPassword,
@@ -94,7 +91,7 @@ export const login = async (req, res) => {
     try {
         const user = await User.findOne({ email })
         if (!user) {
-            return res.status(400).json({ success: false, message: "Invalid Credentials" })
+            return res.status(400).json({ success: false, message: "user not found" })
         }
         const isValidPassword = await bcryptjs.compare(password, user.password)
         if (!isValidPassword) {
@@ -181,8 +178,6 @@ export const resetPassword = async (req, res) => {
 export const checkAuth = async (req, res) => {
     try {
         const user = await User.findById(req.userId).select("-password")
-        console.log("userid", req.userId)
-        console.log("user: ", user)
         if (!user) {
             return res.status(400).json({ success: false, message: "User not found" })
         }
@@ -192,3 +187,61 @@ export const checkAuth = async (req, res) => {
         res.status(400).json({ success: false, message: error.message })
     }
 }
+
+export const resendVerificationEmail = async (req, res) => {
+    const { email } = req.body;
+
+    try {
+        // Find the user by email
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        if (user.isVerified) {
+            return res.status(400).json({ success: false, message: "User is already verified" });
+        }
+
+        // Send the verification email
+        await sendVerificationEmail(user.email, user.verificationToken);
+
+        res.status(200).json({
+            success: true,
+            message: "Verification email sent successfully",
+        });
+    } catch (error) {
+        console.error("Error in resendVerificationEmail:", error);
+        res.status(500).json({ success: false, message: "Error sending verification email" });
+    }
+};
+
+export const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find().select("-password"); // Exclude password field
+        res.status(200).json({ success: true, users });
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        res.status(500).json({ success: false, message: "Error fetching users" });
+    }
+};
+
+export const updateUserVerification = async (req, res) => {
+    const { userId, isVerified } = req.body;
+
+    try {
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        user.isVerified = isVerified;
+        await user.save();
+
+        res.status(200).json({ success: true, message: "User verification status updated successfully" });
+    } catch (error) {
+        console.error("Error updating user verification:", error);
+        res.status(500).json({ success: false, message: "Error updating user verification" });
+    }
+};

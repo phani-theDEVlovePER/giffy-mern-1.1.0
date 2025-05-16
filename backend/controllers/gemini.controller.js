@@ -17,13 +17,8 @@ export const heart = async (req, res) => {
     const jsonPart = resultent_text.split('```json')[1].split('```')[0].trim();
     const parsedResponse = JSON.parse(jsonPart)
     res.status(200).json(parsedResponse)
-    // console.log(parsedResponse)
-    // const jsonPart = aiResponse.split('```json')[1].split('```')[0].trim();
-    // res.status(200).json({ result: result.candidates[0].content.parts[0].text })
   } catch (error) {
     res.status(400).json({ error: error.message })
     console.log(error)
   }
-
-  // console.log(response.text);
 }

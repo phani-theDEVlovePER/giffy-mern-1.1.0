@@ -32,13 +32,8 @@ const Fields = () => {
   let { relationship, age, occasion, interests, budget } = inputdata;
 
   function btnclickhandle() {
-    // console.log("submitted data:")
     setInputarr([...inputarr, { relationship, age, occasion, interests, budget }])
   }
-  // useEffect(() => {
-  //   console.log(inputarr);
-  //   console.log(inputdata)
-  // }, [inputarr]);
 
   const MyPromptGenerator = (data) => {
     const lastIndex = data.length - 1

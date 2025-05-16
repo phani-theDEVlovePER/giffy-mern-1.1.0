@@ -18,14 +18,13 @@ const Signup = () => {
     try {
       await signup(email, password, name)
       navigate("/verify-email")
-      console.log("executing signup.jsx file at line 17")
     } catch (error) {
       console.log(error)
     }
   };
 
   return (
-    <section className='min-h-[100vh] min-w-full formbg flex items-center justify-center'>
+    <section className='min-h-[100vh] formbg flex items-center justify-center'>
       <div className='flex flex-col items-center justify-center h-[75vh] min-w-[50vw] glassbg'>
         <h1 className='text-2xl font-bold mb-4'>Signup</h1>
 

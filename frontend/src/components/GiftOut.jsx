@@ -4,7 +4,6 @@ import { gifts } from '../constants'
 // here the recommended gifts are mapped through the output (Array) from the AI
 const GiftOut = ({ data }) => {
   if (!data || !Array.isArray(data) || data.length === 0) return null
-  console.log(data)
   return (
     <>
       {

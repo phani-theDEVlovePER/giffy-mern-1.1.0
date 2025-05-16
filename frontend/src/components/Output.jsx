@@ -5,8 +5,7 @@ import { useAiStore } from '../store/app.Store'
 
 const Output = ({ dummyAttribute }, ref) => {
   const { openModel, setOpenModel } = useContext(ModalContext)
-  const {data} = useAiStore()
-  // console.log(data)
+  const { data } = useAiStore()
 
   if (!openModel) return null
   if (!data || !Array.isArray(data) || data.length === 0) return null
@@ -21,7 +20,7 @@ const Output = ({ dummyAttribute }, ref) => {
       <div className='h-[90%] w-[90%] glassbg flex items-center overflow-x-scroll p-10 scrollbar-hide'> {/* to scroll left or right */}
         {/*  here the recommended gifts are mapped through the output (Array) from the AI */}
         <div className='h-[90%] w-[130rem] flex items-center justify-center gap-5'>
-          <GiftOut data={data}/>
+          <GiftOut data={data} />
         </div>
       </div>
     </section>

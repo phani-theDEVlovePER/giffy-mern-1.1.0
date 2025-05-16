@@ -18,8 +18,8 @@ const ForgotPassword = () => {
             <div className='flex flex-col items-center justify-center h-[55vh] min-w-[50vw] glassbg'>
                 <h1 className='text-2xl font-bold mb-4'>Forgot Password</h1>
                 {!isSubmitted ? (
-                    <form className='flex flex-col gap-1' onSubmit={handleSubmit}>
-                        <p className='text-green-500'>Enter your email to receive password reset link.</p>
+                    <form className='flex flex-col items-center justify-center gap-1' onSubmit={handleSubmit}>
+                        <p className='pl-2 text-green-500'>Enter your email to receive password reset link.</p>
                         <label className='text-lg'>Email:</label>
                         <input
                             type="email"
@@ -29,7 +29,7 @@ const ForgotPassword = () => {
                             placeholder="Email"
                         />
                         <br />
-                        <button className='border-2 rounded-md' type="submit">
+                        <button className='h-8 w-[22rem] border-2 rounded-md' type="submit">
                             {isLoading ? <Loader className='size-6 animate-spin mx-auto' /> : "Send Reset Link"}
                         </button>
                     </form >

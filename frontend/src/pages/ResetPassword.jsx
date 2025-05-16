@@ -35,8 +35,6 @@ const ResetPassword = () => {
     return (
         <section className='min-h-[100vh] min-w-full formbg flex items-center justify-center'>
 
-            {error && <p className='text-red-500'>{error}</p>}
-            {message && <p className='text-green-500'>{message}</p>}
 
             <div className='flex flex-col items-center justify-center h-[55vh] min-w-[50vw] glassbg'>
                 <h1 className='text-2xl font-bold mb-4'>Reset Password</h1>
@@ -62,6 +60,9 @@ const ResetPassword = () => {
                     <button className='border-2 rounded-md' type="submit">
                         {isLoading ? <Loader className='size-6 animate-spin mx-auto' /> : "Reset Password"}
                     </button>
+
+                    {error && <p className='text-red-500'>{error}</p>}
+                    {message && <p className='text-green-500'>{message}</p>}
                 </form >
                 <br />
                 <p className='text-gray-400'>If you didn't receive the code, please check your spam folder.</p>

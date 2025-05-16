@@ -10,6 +10,7 @@ import ForgotPassword from './pages/ForgotPassword'
 import EmailVerificationPage from './pages/EmailVerificationPage'
 import ResetPassword from './pages/ResetPassword'
 import MainPage from './pages/MainPage'
+import AdminPage from './pages/AdminPage'
 
 
 
@@ -18,16 +19,29 @@ const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, user } = useAuthStore()
 
   if (!isAuthenticated) {
-    // console.log("not authenticated")
     return <Navigate to="/login" replace />
   }
 
   if (!user?.isVerified) {
-    // console.log("not verified")
     return <Navigate to="/verify-email" replace />
   }
   return children
 }
+
+// Protect admin routes
+const ProtectedAdminRoute = ({ children }) => {
+  const { isAuthenticated, user } = useAuthStore();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (!user?.isAdmin) {
+    return <Navigate to="/" replace />;
+  }
+
+  return children;
+};
 
 // redirect authenticated users to the home page
 const RedirectAuthenticatedUser = ({ children }) => {
@@ -37,6 +51,7 @@ const RedirectAuthenticatedUser = ({ children }) => {
   }
   return children
 }
+
 function App() {
 
   const { checkAuth, isCheckingAuth } = useAuthStore()
@@ -50,6 +65,11 @@ function App() {
   return (
     <section className='pagebg min-h-[100vh] min-w-full'>
       <Routes>
+        <Route path="/admin" element={
+          <ProtectedAdminRoute>
+            <AdminPage />
+          </ProtectedAdminRoute>
+        } />
         <Route path="/" element={
           <ProtectedRoute>
             <MainPage />

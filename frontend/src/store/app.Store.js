@@ -33,8 +33,8 @@ export const useAuthStore = create((set) => ({
             set({ user: response.data.user, isAuthenticated: true, isLoading: false })
             toast.success("Login successful..🥰")
         } catch (error) {
-            toast.error("check your internet and user credentials")
             set({ error: error?.response?.data?.message || "Error Logging In", isLoading: false })
+            toast.error(error?.response?.data?.message)
             throw error
         }
     },
@@ -70,9 +70,16 @@ export const useAuthStore = create((set) => ({
             const response = await axios.get(`${API_URL}/auth/check-auth`)
             set({ user: response.data.user, isAuthenticated: true, isCheckingAuth: false })
         } catch (error) {
-            set({ error: null, isCheckingAuth: false, isAuthenticated: false })
-            // console.log("Error in checkAuth:", error);
-            throw error
+            if (error.response?.status == 401) {
+                // Handle unauthorized error
+                set({ user: null, isAuthenticated: false, isCheckingAuth: false });
+                console.warn("User is not authenticated. Redirecting to login...");
+            } else {
+                // Handle other errors
+                console.error("Error during authentication check:", error);
+            }
+        } finally {
+            set({ isCheckingAuth: false });
         }
     },
 
@@ -94,6 +101,50 @@ export const useAuthStore = create((set) => ({
             set({ message: response.data.message, isLoading: false, error: null })
         } catch (error) {
             set({ isLoading: false, error: error.response.data.message || "Error Resetting Password" })
+            throw error
+        }
+    },
+
+    resendVerificationEmail: async (email) => {
+        set({ isLoading: true, error: null })
+        try {
+            const response = await axios.post(`${API_URL}/auth/resend-verification-email`, { email })
+            set({ message: response.data.message, isLoading: false, error: null })
+            toast.success("Verification email resent successfully!")
+        } catch (error) {
+            set({ isLoading: false, error: error.response.data.message || "Error Resending Verification Email" })
+            toast.error("check your internet and try again")
+            throw error
+        }
+    },
+
+    fetchAllUsers: async () => {
+        set({ isLoading: true, error: null })
+        try {
+            const response = await axios.get(`${API_URL}/auth/users`)
+            set({ users: response.data.users, isLoading: false })
+        } catch (error) {
+            set({ error: error.response.data.message || "Error Fetching Users", isLoading: false })
+            throw error
+        }
+    },
+
+    updateUserVerification: async (userId, isVerified) => {
+        set({ isLoading: true, error: null })
+        try {
+            const response = await axios.put(`${API_URL}/auth/users/update-verification`, { userId, isVerified })
+            // set({ message: response.data.message, isLoading: false })
+            set((state) => ({
+                users: state.users.map((user) =>
+                    user._id === userId ? { ...user, isVerified } : user
+                ),
+                message: response.data.message,
+                isLoading: false,
+            }));
+            toast.success("User verification status updated successfully!");
+        } catch (error) {
+            set({ error: error.response.data.message || "Error Updating User Verification", isLoading: false })
+            toast.error("Failed to update verification status");
             throw error
         }
     },
