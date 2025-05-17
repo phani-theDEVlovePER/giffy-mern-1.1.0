@@ -1,5 +1,19 @@
 import express from "express"
-import { checkAuth, forgotPassword, getAllUsers, login, logout, resendVerificationEmail, resetPassword, signup, updateUserVerification, VerifyEmail } from "../controllers/auth.controller.js"
+
+import {
+    checkAuth,
+    forgotPassword,
+    getAllUsers,
+    login,
+    logout,
+    resendVerificationEmail,
+    resetPassword,
+    signup,
+    updateUserVerification,
+    userMessageController,
+    VerifyEmail
+} from "../controllers/auth.controller.js"
+
 import { verifyToken } from "../middleware/verifyToken.js"
 import { heart } from "../controllers/gemini.controller.js"
 
@@ -19,6 +33,8 @@ router.post("/auth/resend-verification-email", resendVerificationEmail);
 router.get("/auth/users", getAllUsers);
 // Route to update isVerified state
 router.put("/auth/users/update-verification", updateUserVerification);
+
+router.post("/auth/users/contact-us", userMessageController);
 
 router.post("/heart", heart)
 

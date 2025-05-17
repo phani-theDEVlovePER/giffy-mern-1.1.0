@@ -11,6 +11,8 @@ import EmailVerificationPage from './pages/EmailVerificationPage'
 import ResetPassword from './pages/ResetPassword'
 import MainPage from './pages/MainPage'
 import AdminPage from './pages/AdminPage'
+import AboutUsPage from './pages/AboutUsPage'
+import ContactUsPage from './pages/ContactUsPage'
 
 
 
@@ -90,12 +92,26 @@ function App() {
             <ForgotPassword />
           </RedirectAuthenticatedUser>
         } />
-        <Route path="/verify-email" element={<EmailVerificationPage />} />
+        <Route path="/verify-email" element={
+          <RedirectAuthenticatedUser>
+            <EmailVerificationPage />
+          </RedirectAuthenticatedUser>
+        } />
 
         <Route path='/reset-password/:token' element={
           <RedirectAuthenticatedUser>
             <ResetPassword />
           </RedirectAuthenticatedUser>
+        } />
+        <Route path="/about-us" element={
+          <ProtectedRoute>
+            <AboutUsPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/Contact-us" element={
+          <ProtectedRoute>
+            <ContactUsPage />
+          </ProtectedRoute>
         } />
       </Routes>
       <Toaster />

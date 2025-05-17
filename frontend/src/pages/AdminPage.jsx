@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuthStore } from "../store/app.Store";
 import { Loader } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AdminPage = () => {
     const { fetchAllUsers, logout, updateUserVerification, users } = useAuthStore();
@@ -34,6 +34,9 @@ const AdminPage = () => {
     return (
         <div className="p-4 min-w-[100vw] xs:max-w-[50vw] min-h-[100vh] flex flex-col items-center justify-center pagebg">
             <div className="flex justify-between items-center w-full max-w-4xl mb-4">
+                <Link to="/" className="text-xl font-bold">
+                    <span className="text-blue-500">My</span>App
+                </Link>
                 <h1 className="text-2xl font-bold text-center">Admin Dashboard</h1>
                 <button
                     onClick={handleLogout}

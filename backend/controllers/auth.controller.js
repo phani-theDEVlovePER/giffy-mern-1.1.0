@@ -1,10 +1,11 @@
 import bcryptjs from 'bcryptjs';
 import crypto from "crypto";
 
-
 import { User } from "../models/user.model.js"
 import { generateTokenAndSetCookie } from "../utils/generateTokenAndSetCookie.js"
+
 import {
+    sendContactUsEmail,
     sendPasswordResetEmail,
     sendResetPasswordSuccessEmail,
     sendVerificationEmail,
@@ -245,3 +246,25 @@ export const updateUserVerification = async (req, res) => {
         res.status(500).json({ success: false, message: "Error updating user verification" });
     }
 };
+
+export const userMessageController = async (req, res) => {
+    const { userEmail, userName, userMessage } = req.body
+
+    try {
+        if (!userEmail || !userName || !userMessage) {
+            return res.status(400).json({
+                success: false,
+                message: "All fields (userEmail, userName, userMessage) are required",
+            });
+        }
+        // sending contactUs email
+        await sendContactUsEmail(userEmail, userName, userMessage)
+
+        res.status(201).json({
+            success: true,
+            message: "contactUs email sent successful",
+        })
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Error sending contactus email" });
+    }
+}

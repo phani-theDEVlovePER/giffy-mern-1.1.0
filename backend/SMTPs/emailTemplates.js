@@ -122,3 +122,34 @@ export const WELCOME_EMAIL_TEMPLATE = `
 </body>
 </html>
 `;
+
+export const CONTACT_US_EMAIL_TEMPLATE = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Contact Us Message</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <div style="background: linear-gradient(to right, #4CAF50, #45a049); padding: 20px; text-align: center;">
+    <h1 style="color: white; margin: 0;">New Contact Us Message</h1>
+  </div>
+  <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    <p>Hello Team,</p>
+    <p>You have received a new message from the Contact Us page:</p>
+    <div style="margin: 20px 0; padding: 15px; background-color: #f1f1f1; border-left: 4px solid #4CAF50;">
+      <p><strong>Name:</strong> {userName}</p>
+      <p><strong>Email:</strong> {userEmail}</p>
+      <p><strong>Message:</strong></p>
+      <p style="margin-left: 20px;">{userMessage}</p>
+    </div>
+    <p>Please respond to the user as soon as possible.</p>
+    <p>Best regards,<br>Your App Team</p>
+  </div>
+  <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
+    <p>This is an automated message, please do not reply to this email.</p>
+  </div>
+</body>
+</html>
+`;

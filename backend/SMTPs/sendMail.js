@@ -1,4 +1,5 @@
 import {
+    CONTACT_US_EMAIL_TEMPLATE,
     PASSWORD_RESET_REQUEST_TEMPLATE,
     PASSWORD_RESET_SUCCESS_TEMPLATE,
     VERIFICATION_EMAIL_TEMPLATE,
@@ -60,5 +61,22 @@ export const sendResetPasswordSuccessEmail = async (email) => {
         })
     } catch (error) {
         throw new Error(`error sending password reset success email: ${error} `)
+    }
+}
+
+export const sendContactUsEmail = async (email, name, userMessage) => {
+    const company_name = "Giffy Tech";
+    try {
+        const response = await transporter.sendMail({
+            from: `"Giffy Tech" <ramcharan.education.4u@gmail.com>`,
+            to: "ramcharan.education.4u@gmail.com",
+            subject: `From ${email}, A ${company_name}'s user..!`,
+            html: CONTACT_US_EMAIL_TEMPLATE
+                .replace('{userName}', name)
+                .replace('{userEmail}', email)
+                .replace('{userMessage}', userMessage)
+        })
+    } catch (error) {
+        throw new Error(`Error sending contactUs email from user: ${error}`)
     }
 }

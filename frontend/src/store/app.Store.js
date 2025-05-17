@@ -149,6 +149,17 @@ export const useAuthStore = create((set) => ({
         }
     },
 
+    userMessageController: async (userEmail, userName, userMessage) => {
+        set({ isLoading: true, error: null })
+        try {
+            const response = await axios.post(`${API_URL}/auth/users/contact-us`, { userEmail, userName, userMessage })
+            set({ message: response.data.message, isLoading: false, error: null })
+        } catch (error) {
+            set({ isLoading: false, error: error.response.data.message || "Error sending contactUs Email" })
+            throw error
+        }
+    },
+
 }))
 
 export const useAiStore = create((set) => ({
