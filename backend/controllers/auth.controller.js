@@ -267,4 +267,22 @@ export const userMessageController = async (req, res) => {
     } catch (error) {
         res.status(500).json({ success: false, message: "Error sending contactus email" });
     }
-}
+};
+
+export const deleteUser = async (req, res) => {
+
+    const { email } = req.body
+    try {
+        if (!email) {
+            throw new Error("All fields are required")
+        }
+        const user = await User.findOneAndDelete({ email });
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+        res.status(200).json({ success: true, message: "User deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting user:", error);
+        res.status(500).json({ success: false, message: "Internal server error" });
+    }
+};

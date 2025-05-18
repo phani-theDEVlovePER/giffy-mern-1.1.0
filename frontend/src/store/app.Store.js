@@ -160,6 +160,19 @@ export const useAuthStore = create((set) => ({
         }
     },
 
+    deleteUser: async (userEmail) => {
+        set({ isLoading: true, error: null })
+        try {
+            const response = await axios.delete(`${API_URL}/auth/users/delete-user`, { data: { email: userEmail }, })
+            set({ message: response.data.message, isLoading: false, error: null })
+            toast.success("User deleted successfully!");
+        } catch (error) {
+            set({ isLoading: false, error: error.response.data.message || "Error deleting user" })
+            toast.error("Failed to delete user");
+            throw error
+        }
+    },
+
 }))
 
 export const useAiStore = create((set) => ({

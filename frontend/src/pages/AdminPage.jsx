@@ -4,8 +4,9 @@ import { Loader } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
 const AdminPage = () => {
-    const { fetchAllUsers, logout, updateUserVerification, users } = useAuthStore();
+    const { fetchAllUsers, logout, updateUserVerification, deleteUser, users } = useAuthStore();
     const [loadingUserId, setLoadingUserId] = useState(null);
+    const [loadingUserEmail, setLoadingUserEmail] = useState(null);
     const navigate = useNavigate();
 
     // Fetch all users on component mount
@@ -22,6 +23,21 @@ const AdminPage = () => {
             console.error("Error updating verification status:", error);
         } finally {
             setLoadingUserId(null);
+        }
+    };
+
+    // Delete user
+    const handleDeleteUser = async (userEmail) => {
+        if (window.confirm("Are you sure you want to delete this user?")) {
+            setLoadingUserEmail(userEmail);
+            try {
+                await deleteUser(userEmail);
+                fetchAllUsers(); // Refresh the user list
+            } catch (error) {
+                console.error("Error deleting user:", error);
+            } finally {
+                setLoadingUserEmail(null);
+            }
         }
     };
 
@@ -59,7 +75,7 @@ const AdminPage = () => {
                     </thead>
                     <tbody>
                         {users?.map((user) => (
-                            <tr key={user._id}>
+                            <tr key={user._id} className="hover:bg-blue-300 active:bg-green-200 transition-colors duration-200 cursor-pointer">
                                 <td className="border border-gray-300 px-4 py-2 text-sm md:text-base">{user.email}</td>
                                 <td className="border border-gray-300 px-4 py-2 text-sm md:text-base">{user.name}</td>
                                 <td className="border border-gray-300 px-4 py-2 text-sm md:text-base">
@@ -71,18 +87,29 @@ const AdminPage = () => {
                                 <td className="border border-gray-300 px-4 py-2 text-sm md:text-base">
                                     {user.isVerified ? "Yes" : "No"}
                                 </td>
-                                <td className="border border-gray-300 px-4 py-2 text-sm md:text-base">
+                                <td className="border border-gray-300 px-4 py-2 text-sm md:text-base flex gap-2">
                                     <button
-                                        className={`px-4 py-2 rounded ${user.isVerified ? "bg-red-500 text-white" : "bg-green-500 text-white"
+                                        className={`w-[6rem] px-4 py-2 rounded flex items-center justify-center ${user.isVerified ? "bg-red-500 text-white" : "bg-green-500 text-white"
                                             }`}
                                         onClick={() => toggleVerification(user._id, user.isVerified)}
                                         disabled={loadingUserId === user._id}
                                     >
-                                        {/* {user.isVerified ? "Unverify" : "Verify"} */}
                                         {loadingUserId === user._id ? (
                                             <Loader className="animate-spin ml-2" />
                                         ) : (
                                             user.isVerified ? "Unverify" : "Verify"
+                                        )}
+                                    </button>
+
+                                    <button
+                                        className="w-[6rem] px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition duration-200 flex items-center justify-center"
+                                        onClick={() => handleDeleteUser(user.email)}
+                                        disabled={loadingUserEmail === user.email}
+                                    >
+                                        {loadingUserEmail === user.email ? (
+                                            <Loader className="animate-spin ml-2" />
+                                        ) : (
+                                            "Delete"
                                         )}
                                     </button>
                                 </td>

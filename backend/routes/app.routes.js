@@ -2,6 +2,7 @@ import express from "express"
 
 import {
     checkAuth,
+    deleteUser,
     forgotPassword,
     getAllUsers,
     login,
@@ -35,6 +36,7 @@ router.get("/auth/users", getAllUsers);
 router.put("/auth/users/update-verification", updateUserVerification);
 
 router.post("/auth/users/contact-us", userMessageController);
+router.delete("/auth/users/delete-user", deleteUser);
 
 router.post("/heart", heart)
 
