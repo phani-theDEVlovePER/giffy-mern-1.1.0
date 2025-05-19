@@ -37,9 +37,9 @@ const ResetPassword = () => {
 
 
             <div className='flex flex-col items-center justify-center h-[55vh] min-w-[50vw] glassbg'>
-                <h1 className='text-2xl font-bold mb-4'>Reset Password</h1>
+                <h1 className='text-2xl font-bold mb-4 text-gray-300'>Reset Password</h1>
                 <form className='flex flex-col' onSubmit={handleSubmit}>
-                    <label className='text-lg'>New Password:</label>
+                    <label className='text-lg text-gray-300'>New Password:</label>
                     <input
                         type="password"
                         className='h-8 w-[22rem] outline-none rounded-md border-white font-bold px-2'
@@ -48,7 +48,7 @@ const ResetPassword = () => {
                         placeholder="New Password"
                     />
                     <br />
-                    <label className='text-lg'>Confirm Password:</label>
+                    <label className='text-lg text-gray-300'>Confirm Password:</label>
                     <input
                         type="password"
                         className='h-8 w-[22rem] outline-none rounded-md border-white font-bold px-2'
@@ -57,7 +57,7 @@ const ResetPassword = () => {
                         placeholder="Confirm Password"
                     />
                     <br />
-                    <button className='border-2 rounded-md' type="submit">
+                    <button className='border-2 rounded-md text-gray-300' type="submit">
                         {isLoading ? <Loader className='size-6 animate-spin mx-auto' /> : "Reset Password"}
                     </button>
 

@@ -10,7 +10,7 @@ const GiftOut = ({ data }) => {
         data.map((gift, index) => (
           <div
             key={index}
-            className='giftOutputBG h-[30rem] w-[25rem] flex flex-col justify-center rounded-xl gap-3 tracking-wide px-8 py-2 text-gray-900'
+            className='giftOutputBG h-[35rem] w-[25rem] flex flex-col justify-center rounded-xl gap-3 tracking-wide px-8 py-2 text-gray-900'
           >
             <h1 className='font-Lora text-3xl mb-2'>{gift.product_name}</h1>
 
@@ -28,15 +28,6 @@ const GiftOut = ({ data }) => {
               <span className='text-blue-950'>Description:</span>
               <h2 className='font-Lora text-base'> {gift.description}</h2>
             </div>
-
-
-            {/* <div className='flex flex-col items-center justify-center m-2 gap-4'>
-              <div className='flex gap-2 items-start'>
-                <span className='text-blue-950'>Description:</span>
-                <h2 className='font-Lora text-sm'> {gift.description}</h2>
-              </div>
-              <button className='h-[2rem] w-[8rem] bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 rounded-md flex items-center justify-center font-[600] text-gray-900 cursor-not-allowed'>Buy Now</button>
-            </div> */}
           </div>
         ))
       }

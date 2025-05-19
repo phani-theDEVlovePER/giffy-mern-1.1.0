@@ -26,10 +26,10 @@ const Signup = () => {
   return (
     <section className='min-h-[100vh] formbg flex items-center justify-center'>
       <div className='flex flex-col items-center justify-center h-[75vh] min-w-[50vw] glassbg'>
-        <h1 className='text-2xl font-bold mb-4'>Signup</h1>
+        <h1 className='text-2xl font-bold text-gray-300 mb-4'>Signup</h1>
 
         <form className='flex flex-col gap-1 items-center justify-center' onSubmit={handleSubmit}>
-          <label className='text-lg font-semibold'>Email:</label>
+          <label className='text-lg font-semibold text-gray-300'>Email:</label>
           <input
             type="email"
             className='h-8 w-[22rem] outline-none rounded-md border-white font-bold px-2'
@@ -39,7 +39,7 @@ const Signup = () => {
           />
           <br />
 
-          <label className='text-lg font-semibold'>Password:</label>
+          <label className='text-lg font-semibold text-gray-300'>Password:</label>
           <input
             type="password"
             className='h-8 w-[22rem] outline-none rounded-md border-white font-bold px-2'
@@ -49,7 +49,7 @@ const Signup = () => {
           />
           <br />
 
-          <label className='text-lg font-semibold'>Name:</label>
+          <label className='text-lg font-semibold text-gray-300'>Name:</label>
           <input
             type="text"
             className='h-8 w-[22rem] outline-none rounded-md border-white font-bold px-2'
@@ -59,7 +59,7 @@ const Signup = () => {
           />
           <br />
 
-          <button className='h-8 w-[22rem] outline-dashed rounded-md border-white font-bold px-2' type="submit">
+          <button className='h-8 w-[22rem] outline-dashed rounded-md border-white font-bold px-2 text-gray-300' type="submit">
             {isLoading ? <Loader className='animate-spin mx-auto' size={24} /> : "signup"}
           </button>
           <br />

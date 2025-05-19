@@ -24,10 +24,10 @@ const Login = () => {
   return (
     <section className='min-h-[100vh] min-w-full formbg flex items-center justify-center'>
       <div className='flex flex-col items-center justify-center h-[60vh] xs:min-w-[50vw] min-w-[100vw] glassbg p-2'>
-        <h1 className='text-2xl font-bold mb-4'>Login</h1>
+        <h1 className='text-2xl font-bold mb-4 text-gray-300'>Login</h1>
 
         <form className='flex flex-col gap-1 items-center justify-center' onSubmit={handleSubmit}>
-          <label className='text-lg font-semibold'>email:</label>
+          <label className='text-lg font-semibold text-gray-300'>email:</label>
           <input
             type="email"
             className='h-8 w-[15rem] outline-none rounded-md border-white font-bold px-2'
@@ -37,7 +37,7 @@ const Login = () => {
           />
           <br />
 
-          <label className='text-lg font-semibold'>Password:</label>
+          <label className='text-lg font-semibold text-gray-300'>Password:</label>
           <input
             type="password"
             className='h-8 w-[15rem] outline-none rounded-md border-white font-bold px-2'
@@ -47,7 +47,7 @@ const Login = () => {
           />
           <br />
 
-          <button className='h-8 w-[15rem] outline-dashed rounded-md border-white font-bold px-2' type="submit">
+          <button className='h-8 w-[15rem] outline-dashed rounded-md border-white text-gray-300 font-bold px-2' type="submit">
             {isLoading ? <Loader className='animate-spin mx-auto' /> : "Login"}
           </button>
 
