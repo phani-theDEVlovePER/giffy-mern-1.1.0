@@ -100,21 +100,21 @@ export const WELCOME_EMAIL_TEMPLATE = `
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to {companyName}</title>
+  <title>Welcome to Giffy Tech</title>
 </head>
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
   <div style="background: linear-gradient(to right, #4CAF50, #45a049); padding: 20px; text-align: center;">
-    <h1 style="color: white; margin: 0;">Welcome to {companyName}!</h1>
+    <h1 style="color: white; margin: 0;">Welcome to Giffy Tech!</h1>
   </div>
   <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
     <p>Hi {user_name},</p>
-    <p>We're thrilled to have you on board! At {companyName}, we strive to provide the best experience for our users.</p>
+    <p>We're thrilled to have you on board! At Giffy Tech, we strive to provide the best experience for our users.</p>
     <p>If you have any questions or need assistance, feel free to reach out to our support team.</p>
     <div style="text-align: center; margin: 30px 0;">
-      <a href="https://www.giffytech.com" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Visit Our Website</a>
+      <a href="https://giffy-mern-1-1-0.onrender.com" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Visit Our Website</a>
     </div>
     <p>Thank you for joining us, and we look forward to serving you!</p>
-    <p>Best regards,<br>The {companyName} Team</p>
+    <p>Best regards,<br>The Giffy Tech Team</p>
   </div>
   <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
     <p>This is an automated message, please do not reply to this email.</p>
